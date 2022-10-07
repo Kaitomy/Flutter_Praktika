@@ -26,14 +26,18 @@ Future<void> init() async {
   else {
     dataBase = await openDatabase(
 _pathDB,
+onUpgrade: (db, oldVersion, newVersion) async{
+ await onUpgradeTable(db); 
+},
 onCreate: (db,version) async{
   await onCreateTable(db);
-});
+},
+);
   }
 }
 Future<void> onCreateTable(Database db) async{
 for (var element in DataBaseRequest.tableCreateList) {
-  db.execute(element);
+  await db.execute(element);
 }
 await onInitTable(db);
 }
@@ -53,5 +57,18 @@ Future<void> onDropDataBase() async{
   } else {
     deleteDatabase(_pathDB);
   }
+}
+
+Future<void> onUpgradeTable(Database db) async{
+  var tables = await db.rawQuery('SELECT name FROM sqlite_master;');
+  for (var table in DataBaseRequest.tableList.reversed) {
+    if(tables.where((element) => element['name'] == table).isNotEmpty){
+      await db.execute(DataBaseRequest.deleteTable(table));
+    }
+  }
+for (var element in DataBaseRequest.tableCreateList) {
+ await db.execute(element);
+}
+await onInitTable(db);
 }
 }
