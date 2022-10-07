@@ -177,7 +177,7 @@ const Divider(color: Color.fromARGB(255, 177, 175, 175)),
         child: const Text("▷",
           style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold)),
       ),
-      Expanded(
+      Expanded( 
         child: Padding(
         padding: const EdgeInsets.only(left: 8, top:5 ),
         
