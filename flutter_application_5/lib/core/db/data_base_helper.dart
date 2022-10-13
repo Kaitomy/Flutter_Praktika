@@ -2,8 +2,9 @@ import 'dart:io';
 
 import 'package:flutter_application_5/common/data_base_reguest.dart';
 import 'package:flutter_application_5/data/model/role.dart';
+import 'package:flutter_application_5/data/model/size.dart';
 import 'package:sqflite/sqflite.dart';
-
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 
 import 'package:path/path.dart';
@@ -48,6 +49,9 @@ Future<void> onInitTable(Database db) async {
   try{
  db.insert(DataBaseRequest.tableRole, Role(role: 'Администратор ').toMap());
  db.insert(DataBaseRequest.tableRole, Role(role: 'Пользователь ').toMap());
+ db.insert(DataBaseRequest.tableRole, Size(number: 'XL ').toMap());
+ db.insert(DataBaseRequest.tableRole, Size(number: 'S ').toMap());
+ db.insert(DataBaseRequest.tableRole, Size(number: 'M ').toMap());
   } on DatabaseException catch(e){
     print(e.result);
   }
@@ -56,7 +60,14 @@ Future<void> onInitTable(Database db) async {
 Future<void> onDropDataBase() async{
   dataBase.close();
   if (Platform.isWindows || Platform.isLinux || Platform.isMacOS ) {
-
+      sqfliteFfiInit();
+      var databaseFactory = databaseFactoryFfi;
+      dataBase= await databaseFactory.openDatabase(_pathDB,   
+        options: OpenDatabaseOptions(
+             version: 1,
+             onCreate: (db, version) {onCreateTable(db);},
+             onUpgrade: ((db, oldVersion, newVersion) async {await onUpgradeTable(db);})
+          ));
   } else {
     deleteDatabase(_pathDB);
   }
