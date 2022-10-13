@@ -22,10 +22,13 @@ Future<void> init() async {
 
   _pathDB = join(_appDocumentDirectory.path,'booksstore.db');
 
-  if (Platform.isWindows || Platform.isLinux || Platform.isMacOS ) {}
+  if (Platform.isWindows || Platform.isLinux || Platform.isMacOS ) {
+
+
+  }
   else {
     dataBase = await openDatabase(
-_pathDB,
+_pathDB,version: 1,
 onUpgrade: (db, oldVersion, newVersion) async{
  await onUpgradeTable(db); 
 },
