@@ -24,7 +24,14 @@ Future<void> init() async {
   _pathDB = join(_appDocumentDirectory.path,'booksstore.db');
 
   if (Platform.isWindows || Platform.isLinux || Platform.isMacOS ) {
-
+sqfliteFfiInit();
+      var databaseFactory = databaseFactoryFfi;
+      dataBase= await databaseFactory.openDatabase(_pathDB,   
+        options: OpenDatabaseOptions(
+             version: 1,
+             onCreate: (db, version) {onCreateTable(db);},
+             onUpgrade: ((db, oldVersion, newVersion) async {await onUpgradeTable(db);})
+          ));
 
   }
   else {
@@ -60,14 +67,9 @@ Future<void> onInitTable(Database db) async {
 Future<void> onDropDataBase() async{
   dataBase.close();
   if (Platform.isWindows || Platform.isLinux || Platform.isMacOS ) {
-      sqfliteFfiInit();
-      var databaseFactory = databaseFactoryFfi;
-      dataBase= await databaseFactory.openDatabase(_pathDB,   
-        options: OpenDatabaseOptions(
-             version: 1,
-             onCreate: (db, version) {onCreateTable(db);},
-             onUpgrade: ((db, oldVersion, newVersion) async {await onUpgradeTable(db);})
-          ));
+        databaseFactory = databaseFactoryFfi; 
+    databaseFactory.deleteDatabase(_pathDB);
+      
   } else {
     deleteDatabase(_pathDB);
   }
