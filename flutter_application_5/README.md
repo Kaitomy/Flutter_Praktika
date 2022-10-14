@@ -1,16 +1,58 @@
-# flutter_application_5
+# ПРАКТИЧЕСКАЯ РАБОТА №2
 
-A new Flutter project.
+Тема: Реализация таблиц для базы данных «Магазин Одежды»
+Цель работы: Реализовать класс который отвечает за базу данных.
+Реализовать следующие функции:
+- init - инициализация базы данных для всех платформ
+- onCreateTable - создание таблиц 
+- onUpdateTable - обновление таблиц
+- onInitTable - заполнение таблиц данными
+- onDropDataBase - удаление базы данных 
+Реализовать таблицы для предметной области "Магазин одежды"(10 штук).
+Ход работы: 
+Для выполнения практической работы, для начала необходимо разработать логическую и физическую схемы.
 
-## Getting Started
+ ![Снимок экрана 2022-10-13 234554](https://user-images.githubusercontent.com/99449281/195725928-5b1b841e-b90b-4f7f-bd88-1036d5f51fd5.png)
+Рисунок 6.Логическая схема
 
-This project is a starting point for a Flutter application.
+ ![Снимок экрана 2022-10-13 234531](https://user-images.githubusercontent.com/99449281/195725945-9b498fb6-cb91-4b57-b477-7942bb9280f0.png)
+ 
+Рисунок 7.Физическая схема
 
-A few resources to get you started if this is your first Flutter project:
+Далее необходимо создать все таблицы и методы к ним.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+ ![Снимок экрана 2022-10-14 020211](https://user-images.githubusercontent.com/99449281/195726164-71fe7027-c3d1-4d0a-b453-94048b2b0be4.png)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Рисунок 8.Реализация таблиц
+
+ ![Снимок экрана 2022-10-14 020228](https://user-images.githubusercontent.com/99449281/195726168-a6e9e217-4f35-4304-a399-fb53a236b34a.png)
+
+Рисунок 9.Реализация таблиц
+
+Для примера будет показана таблицу orders.
+
+ ![Снимок экрана 2022-10-14 020238](https://user-images.githubusercontent.com/99449281/195726174-b220585a-27b2-4101-9bd5-ed61e3218053.png)
+
+Рисунок 10.Model
+
+ ![Снимок экрана 2022-10-14 020250](https://user-images.githubusercontent.com/99449281/195726179-c1f147b6-0258-4564-95de-90e93cd3dcc7.png)
+
+Рисунок 11.Entity
+
+Добавление поддержки разных версий.
+
+ ![Снимок экрана 2022-10-14 020300](https://user-images.githubusercontent.com/99449281/195726186-f59cc348-1b0a-4496-abbe-3ef1134e2df8.png)
+
+Рисунок 12.Платформы
+
+После создания и настройки таблиц, в них можно добавить данные. Для примера будут добавлены данные в таблицы Роль и Размер.
+
+![Снимок экрана 2022-10-14 125457](https://user-images.githubusercontent.com/99449281/195820264-680f1348-858e-4a08-b503-4c7aece53013.png)
+
+Рисунок 13.Добавление данных
+
+![Снимок экрана 2022-10-14 125534](https://user-images.githubusercontent.com/99449281/195820329-28c75562-6288-4494-a67e-7260594af15d.png)
+
+Рисунок 14.Создание базы данных
+
+Вывод:  В результате выполнения данной работы, были разработаны схемы базы данных магазина одежды, а также реализованы 10 таблиц с возможностью их редактирования, а также добавлены некоторые данные в них.
