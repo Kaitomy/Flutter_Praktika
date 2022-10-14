@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-void main() {
+import 'package:flutter_application_5/core/db/data_base_helper.dart';
+import 'package:sqflite/sqflite.dart';
+Future<void> main() async {
+  await DataBaseHelper.instance.init();
+
   runApp(const MyApp());
 }
 
@@ -95,7 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
-              'You have pushed the button this many times:',
+              'You have pushed the button this many time:',
             ),
             Text(
               '$_counter',
