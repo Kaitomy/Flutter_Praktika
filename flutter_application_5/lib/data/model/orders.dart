@@ -1,4 +1,6 @@
 import 'package:flutter_application_5/domain/entity/orders_entity.dart';
+import 'package:flutter_application_5/domain/entity/tovar_entity.dart';
+import 'package:flutter_application_5/domain/entity/info_entity.dart';
 
 class Orders extends OrdersEntity {
   late int id;

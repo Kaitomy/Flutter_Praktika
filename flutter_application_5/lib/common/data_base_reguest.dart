@@ -23,8 +23,8 @@ static const List<String> tableList= [
   tableSize,
   tableColors,
   tableInfo,
-  tableSklad,
   tableContractor,
+  tableSklad,
   tableFavor,
   tableOrders,
   tableTovar,
@@ -56,13 +56,13 @@ static const String _createtableInfo =
 static const String _createtableContractor =
       'CREATE TABLE "$tableContractor" ("id"	INTEGER,"name" TEXT NOT NULL  UNIQUE,"address" TEXT NOT NULL ,"index" INTEGER NOT NULL ,"email" TEXT NOT NULL UNIQUE, PRIMARY KEY("id" AUTOINCREMENT))';
 static const String _createtableSklad =
-      'CREATE TABLE "$tableSklad" ("id"	INTEGER,"date" DATE NOT NULL,"address" TEXT NOT NULL,"index"	INTEGER NOT NULL ,"id_tovar"	INTEGER,FOREIGN KEY("id_tovar") REFERENCES "Tovar"("id"),"id_contractor"	INTEGER,FOREIGN KEY("id_contractor") REFERENCES "Contractor"("id"),PRIMARY KEY("id"))';
+      'CREATE TABLE "$tableSklad" ("id"	INTEGER,"date" DATE NOT NULL,"address" TEXT NOT NULL,"index"	INTEGER NOT NULL ,"id_tovar"	INTEGER, "id_contractor" INTEGER,FOREIGN KEY("id_tovar") REFERENCES "Tovar"("id"),FOREIGN KEY("id_contractor") REFERENCES "Contractor"("id"),PRIMARY KEY("id"))';
 static const String _createtableFavor =
-      'CREATE TABLE "$tableFavor" ("id"	INTEGER,"date" DATE NOT NULL,"id_tovar"	INTEGER,FOREIGN KEY("id_tovar") REFERENCES "Tovar"("id"),"id_info"	INTEGER,FOREIGN KEY("id_info") REFERENCES "Info"("id"),PRIMARY KEY("id"))';
+      'CREATE TABLE "$tableFavor" ("id"	INTEGER,"date" DATE NOT NULL,"id_tovar"	INTEGER,"id_info"	INTEGER,FOREIGN KEY("id_tovar") REFERENCES "Tovar"("id"),FOREIGN KEY("id_info") REFERENCES "Info"("id"),PRIMARY KEY("id"))';
 static const String _createtableOrders =
-      'CREATE TABLE "$tableOrders" ("id"	INTEGER,"date" DATE NOT NULL, "sum" TEXT NOT NULL, "status" TEXT NOT NULL,"amount" TEXT NOT NULL,"number"	INTEGER NOT NULL,	FOREIGN KEY("id_tovar") REFERENCES "Tovar"("id"),"id_info"	INTEGER,FOREIGN KEY("id_info") REFERENCES "Info"("id"),PRIMARY KEY("id"))';
+      'CREATE TABLE "$tableOrders" ("id"	INTEGER,"date" DATE NOT NULL, "sum" TEXT NOT NULL, "status" TEXT NOT NULL,"amount" TEXT NOT NULL,"number"	INTEGER NOT NULL,"id_tovar"	INTEGER,"id_info"	INTEGER,	FOREIGN KEY("id_tovar") REFERENCES "Tovar"("id"),FOREIGN KEY("id_info") REFERENCES "Info"("id"),PRIMARY KEY("id"))';
  static const String _createtableTovar =
-      'CREATE TABLE "$tableTovar" ("id"	INTEGER,"name" TEXT NOT NULL,"price" TEXT NOT NULL,"desc" TEXT NOT NULL ,"id_size"	INTEGER,FOREIGN KEY("id_size") REFERENCES "Size"("id"),"id_colors"	INTEGER,FOREIGN KEY("id_colors") REFERENCES "Colors"("id"),PRIMARY KEY("id"))';
+      'CREATE TABLE "$tableTovar" ("id"	INTEGER,"name" TEXT NOT NULL,"price" TEXT NOT NULL,"desc" TEXT NOT NULL ,"id_size" INTEGER,"id_colors"	INTEGER,FOREIGN KEY("id_size") REFERENCES "Size"("id"),FOREIGN KEY("id_colors") REFERENCES "Colors"("id"),PRIMARY KEY("id"))';
 
       static String deleteTable(String table) => 'DROP TABLE $table';
 

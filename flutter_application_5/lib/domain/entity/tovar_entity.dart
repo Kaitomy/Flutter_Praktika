@@ -1,3 +1,5 @@
+import 'package:flutter_application_5/domain/entity/colors_entity.dart';
+import 'package:flutter_application_5/domain/entity/size_entity.dart';
 class TovarEntity{
   late int id;
   final String name;

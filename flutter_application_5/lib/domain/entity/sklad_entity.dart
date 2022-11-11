@@ -1,3 +1,6 @@
+import 'package:flutter_application_5/domain/entity/contractor_entity.dart';
+import 'package:flutter_application_5/domain/entity/tovar_entity.dart';
+import 'package:flutter_application_5/domain/entity/colors_entity.dart';
 class SkladEntity{
   late int id;
   final DateTime date;

@@ -1,3 +1,4 @@
+import 'package:flutter_application_5/domain/entity/users_entity.dart';
 class InfoEntity{
   late int id;
   final String familiya;

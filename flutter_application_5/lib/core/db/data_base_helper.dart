@@ -21,15 +21,15 @@ class DataBaseHelper {
     _appDocumentDirectory =
         await path_provider.getApplicationDocumentsDirectory();
 
-    _pathDB = join(_appDocumentDirectory.path, 'booksstore.db');
+    _pathDB = join(_appDocumentDirectory.path, 'store.db');
 
     if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
       sqfliteFfiInit();
       dataBase = await databaseFactoryFfi.openDatabase(_pathDB,
           options: OpenDatabaseOptions(
-              version: 1,
-              onCreate: (db, version) {
-                onCreateTable(db);
+              version: 2,
+              onCreate: (db, version)async {
+               await onCreateTable(db);
               },
               onUpgrade: ((db, oldVersion, newVersion) async {
                 await onUpgradeTable(db);

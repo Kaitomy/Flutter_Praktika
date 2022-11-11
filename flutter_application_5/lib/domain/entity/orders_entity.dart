@@ -1,3 +1,6 @@
+import 'package:flutter_application_5/domain/entity/tovar_entity.dart';
+import 'package:flutter_application_5/domain/entity/info_entity.dart';
+
 class OrdersEntity{
   late int id;
   final DateTime date;
