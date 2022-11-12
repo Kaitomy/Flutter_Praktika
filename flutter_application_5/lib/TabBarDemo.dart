@@ -112,7 +112,11 @@ class _MyHomePageState extends State<MyHomePage> {
       } else if (f.contains("user") == true) {
    Navigator.push(context, MaterialPageRoute(builder: (context) => User()));
       } else {
-        print(f);
+       const snackBar = SnackBar(
+                                            content: Text('Authorization failed'),
+                                          );
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(snackBar);
       }
     }
 
