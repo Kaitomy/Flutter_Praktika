@@ -22,7 +22,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  
+ 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -45,6 +45,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  
   usernameValidator(String username) {
     if (username.isEmpty) {
       return false;
@@ -74,8 +75,8 @@ class _MyHomePageState extends State<MyHomePage> {
       return false;
     } else if (email.length > 20) {
       return false;
-    }
-    return true;
+    } else if (!email.contains("@")){return false;}
+    else {return true;}
   }
 
   GlobalKey<FormState> _key = GlobalKey();
@@ -85,9 +86,10 @@ class _MyHomePageState extends State<MyHomePage> {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _nicknameController2 = TextEditingController();
   TextEditingController _passwordController2 = TextEditingController();
-
+  
   bool isObscure = true;
   bool _isValid = true;
+    
   @override
   Widget build(BuildContext context) {
     void signUp() async {
@@ -202,8 +204,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 8, vertical: 16),
                                   child: TextFormField(
+                                    obscureText: true,
                                     controller: _passwordController,
+                                    
+                                    
                                     decoration: const InputDecoration(
+                                      
                                       border: UnderlineInputBorder(),
                                       labelText: 'Введите пароль',
                                     ),
@@ -297,6 +303,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         horizontal: 8, vertical: 16),
                                     child: TextFormField(
                                       controller: _passwordController2,
+                                      obscureText: true,
                                       decoration: const InputDecoration(
                                         border: UnderlineInputBorder(),
                                         labelText: 'Введите пароль',
