@@ -4,7 +4,7 @@ import 'package:flutter_application_5/core/db/data_base_helper.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:flutter_application_5/welcome.dart';
 Future<void> main() async {
-  await DataBaseHelper.instance.init();
+await DataBaseHelper.instance.init();
   runApp( App());
 }
 

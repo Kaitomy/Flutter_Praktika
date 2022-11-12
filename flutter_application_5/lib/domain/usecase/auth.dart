@@ -10,7 +10,7 @@ Auth(this.authRepositories);
 
   @override
   Future<Either<String, RoleEnum>> singIn(AuthParams params) async{
-    return await authRepositories.signIn(params.login, params.password, params.email);
+    return await authRepositories.signIn(params.login, params.password);
   }
 
   @override
@@ -18,6 +18,7 @@ Auth(this.authRepositories);
     return await authRepositories.signUp(params.login, params.password, params.email);
   }
 }
+
 
 class AuthParams {
 final String login;

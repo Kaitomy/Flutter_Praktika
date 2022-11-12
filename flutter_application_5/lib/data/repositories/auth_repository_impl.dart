@@ -5,6 +5,11 @@ import 'package:flutter_application_5/domain/entity/role_entity.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_application_5/domain/repositories/auth_repositories.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_application_5/app_router.dart';
+import 'package:flutter_application_5/core/db/data_base_helper.dart';
+import 'package:sqflite/sqflite.dart';
+import 'package:flutter_application_5/welcome.dart';
 
 class AuthReposityImpl implements AuthRepositories {
   final _db = DataBaseHelper.instance.dataBase;
@@ -14,7 +19,7 @@ class AuthReposityImpl implements AuthRepositories {
 
   @override
   Future<Either<String, RoleEnum>> signIn(
-      String login, String password, String email) async {
+      String login, String password) async {
     try {
       var user =
           (await _db.query(table, where: 'login = ?', whereArgs: [login]))
@@ -26,8 +31,10 @@ class AuthReposityImpl implements AuthRepositories {
       if (user.first.password != password) {
         return const Left('Неправильный пароль');
       }
+      
 
       return Right(user.first.id_role);
+      
     } on DatabaseException catch (error) {
       return const Left('');
     }
