@@ -22,7 +22,6 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
- 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -34,7 +33,6 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyHomePage(),
-      
     );
   }
 }
@@ -45,7 +43,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  
   usernameValidator(String username) {
     if (username.isEmpty) {
       return false;
@@ -75,8 +72,11 @@ class _MyHomePageState extends State<MyHomePage> {
       return false;
     } else if (email.length > 20) {
       return false;
-    } else if (!email.contains("@")){return false;}
-    else {return true;}
+    } else if (!email.contains("@")) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   GlobalKey<FormState> _key = GlobalKey();
@@ -86,10 +86,9 @@ class _MyHomePageState extends State<MyHomePage> {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _nicknameController2 = TextEditingController();
   TextEditingController _passwordController2 = TextEditingController();
-  
+
   bool isObscure = true;
-  bool _isValid = true;
-    
+
   @override
   Widget build(BuildContext context) {
     void signUp() async {
@@ -110,15 +109,16 @@ class _MyHomePageState extends State<MyHomePage> {
       ));
       String f = result.toString();
       if (f.contains("admin") == true) {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => Admin()));
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => Admin()));
       } else if (f.contains("user") == true) {
-   Navigator.push(context, MaterialPageRoute(builder: (context) => User()));
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => User()));
       } else {
-       const snackBar = SnackBar(
-                                            content: Text('Authorization failed'),
-                                          );
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(snackBar);
+        const snackBar = SnackBar(
+          content: Text('Authorization failed'),
+        );
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
       }
     }
 
@@ -206,10 +206,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   child: TextFormField(
                                     obscureText: true,
                                     controller: _passwordController,
-                                    
-                                    
                                     decoration: const InputDecoration(
-                                      
                                       border: UnderlineInputBorder(),
                                       labelText: 'Введите пароль',
                                     ),
@@ -268,7 +265,6 @@ class _MyHomePageState extends State<MyHomePage> {
                                     ),
                                   ),
                                 ),
-                               
                               ],
                             ),
                           ),
@@ -342,7 +338,6 @@ class _MyHomePageState extends State<MyHomePage> {
                                       ),
                                     ),
                                   ),
-                                 
                                 ]),
                           ),
                         ]))
